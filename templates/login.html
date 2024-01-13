@@ -1,0 +1,43 @@
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Strona logowania">
+      <meta name="author" content="Rafał P">
+      <!-- Bootstrap core CSS -->
+      <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <link href="../static/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+      <!-- Custom styles for this template -->
+      <link href="..\static\css\signin.css" rel="stylesheet">
+
+
+    </head>
+    <body >
+        <main class="form-signin w-100 m-auto">
+
+            <br>
+            
+            <br>
+            <form action="" method="POST" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+              <h2 class="form-signin-heading">Zaloguj się</h2>
+                <input class="form-control" type="text" placeholder="Login" name="username" value="{{request.form.username }}" required autofocus>
+                <input class="form-control" type="password" placeholder="Hasło" name="password" value="{{request.form.password }}" required> <br>
+                <input class="btn btn-primary w-100 py-2" type="submit" value="Zaloguj">
+            </form>
+          </main>
+          <center>
+            {% if error %}
+             <p class="error"><strong>Error:</strong> {{ error }} 
+            {% endif %}
+            {% for message in get_flashed_messages() %}
+              {{ message }}
+            {% endfor %}
+          </center>
+          
+    </body>
+    
+</html>

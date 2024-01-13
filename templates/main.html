@@ -1,0 +1,66 @@
+<html>
+    <head>
+    <link href= "static/bootstrap.min.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+        <br>
+        <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-left justify-content-left">
+          <div class="list-group">
+
+        <a href="vid1" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+          
+          <div class="d-flex gap-2 w-100 justify-content-between">
+             <div>
+              <h6 class="mb-0">Pierwsze nagranie szkoleniowe</h6>
+              <p class="mb-0 opacity-75">Dodatkowe informację o nim</p>
+             </div>
+           {% if v1z == True %} <img src="/static/check-circle-fill.svg" alt="Kurs zakończony" width="32" height="32"> {% endif %}
+          </div>
+        </a>
+        <a href="/vid2" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+          
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h6 class="mb-0">Drugie nagranie szkoleniowe</h6>
+              <p class="mb-0 opacity-75">Dodatkowe informację o nim</p>
+            </div>
+          {% if v2z == True %} <img src="/static/check-circle-fill.svg" alt="Kurs zakończony" width="32" height="32"> {% endif %}
+          </div>
+        </a>
+        <a href="/vid3" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+          
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div>
+              <h6 class="mb-0">Trzecie nagranie szkoleniowe</h6>
+              <p class="mb-0 opacity-75">Dodatkowe informację o nim</p>
+            </div>
+          {% if v3z == True %} <img src="/static/check-circle-fill.svg" alt="Kurs zakończony" width="32" height="32"> {% endif %}
+          </div>
+        </a>
+        <hr>
+        {% if adm == True %}
+        <a href="/table" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+          
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <h6 class="mb-0">Przegląd pracowników</h6>
+          </div>
+        </a>
+        <hr>
+        {% endif %}
+        <a href="/logout" type="button" class="btn btn-primary btn-lg px-4 gap-3">Wyloguj</a>
+
+
+          </div>
+        
+        </div>
+        {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+      {% for message in get_flashed_messages() %}
+      
+        {{ message }}
+      {% endfor %}
+
+      
+    </body>
+</html>
