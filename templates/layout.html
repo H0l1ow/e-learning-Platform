@@ -1,0 +1,35 @@
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Strona logowania">
+      <meta name="author" content="Rafał P">
+      <!-- Bootstrap core CSS -->
+      <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <link href="../static/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+      <!-- Custom styles for this template -->
+      <link href="..\static\css\signin.css" rel="stylesheet">
+
+
+    </head>
+    <body >
+
+    
+            <nav>
+            {% include 'navbar.html'%}
+            </nav>
+
+            {% block content %}
+            {% endblock %}
+
+
+    <footer>
+        {%include 'footer.html'%}
+    </footer>
+    </body>
+    
+</html>
