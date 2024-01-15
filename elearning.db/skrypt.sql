@@ -3,10 +3,14 @@ USE elearning;
 
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    admin BOOLEAN,
     username VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL
+    password VARCHAR(255) NOT NULL,
+    vid1 BOOLEAN,
+    vid2 BOOLEAN,
+    vid3 BOOLEAN
 );
 
-INSERT INTO users (username, password) VALUES ('admin', 'admin');
-INSERT INTO users (username, password) VALUES ('Dan', '4444');
-INSERT INTO users (username, password) VALUES ('Rav', '1234');
+INSERT INTO users (admin, username, password, vid1, vid2, vid3) Values (True ,'Rav', '1234', False, True, True);
+INSERT INTO users (admin, username, password, vid1, vid2, vid3) Values (False ,'Dan', '4444', False, False, False);
+INSERT INTO users (admin, username, password, vid1, vid2, vid3) Values (True ,'test', 'test', True, True, True);

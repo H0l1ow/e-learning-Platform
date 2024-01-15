@@ -29,27 +29,23 @@ def login_required(f):
 @login_required
 def vid1():
     if request.method == 'POST':
-        with open("../static/users.json", "r") as wyniki:
-            data = json.load(wyniki)
-        for i in range(len(data)): 
-            if session['name'] == data[i]["login"]:
-                data[i]["vid1"] = True
+        username = session['name']
+        cur = mysql.connection.cursor()
+        cur.execute("UPDATE users SET vid1 = TRUE WHERE username = %s", (username,))
+        mysql.connection.commit()
+        cur.close()
 
-        with open("static/users.json", "w") as wyniki:
-            json.dump(data,wyniki)
-            wyniki.close
-        #return render_template('vid1.html')
     return render_template('vid1.html')
 
 #ładowanie strony z tabelą użytkowników
 @app.route('/table', methods=['GET', 'POST'])
 @login_required
 def table():
-    users_json_path = os.path.join(app.root_path, 'static', 'users.json')
+    # users_json_path = os.path.join(app.root_path, 'static', 'users.json')
 
-    with open(users_json_path) as compl:
-        data = json.load(compl)
-        data = json2html.convert(data)
+    # with open(users_json_path) as compl:
+    #     data = json.load(compl)
+    #     data = json2html.convert(data)
     
     return render_template('table.html', **locals())
 
@@ -62,20 +58,20 @@ def home():
 @app.route('/hello', methods=['GET', 'POST'])
 @login_required
 def hello():
-    error = None
-    v1z = False  # Przypisz wartość domyślną
-    adm = False
-    users_json_path = os.path.join(app.root_path, 'static', 'users.json')
-    
-    with open(users_json_path) as compl:
-        data = json.load(compl)
+        
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM users WHERE username=%s", (session['name'],))
+    user = cur.fetchone()
+    cur.close()
 
-    for i in range(len(data)):
-        if session['name'] == data[i]['login']:
-            v1z = data[i]['vid1']
-            adm = data[i]['admin']
-    
-    return render_template('main.html', v1z=v1z, adm=adm)
+    if user:
+        v1z = user[4]  # Assuming vid1 is at index 4 in the SELECT query result
+        v2z = user[5]  # Assuming vid1 is at index 4 in the SELECT query result
+        v3z = user[6]  # Assuming vid1 is at index 4 in the SELECT query result
+        adm = user[1]  # Assuming admin is at index 1 in the SELECT query result
+
+    return render_template('main.html', v1z=v1z, v2z=v2z, v3z=v3z, adm=adm)
+
 
 #zajmowanie sie logowaniem
 @app.route('/login', methods=['GET', 'POST'])
@@ -98,6 +94,8 @@ def login():
             error = 'Nieprawidłowe dane, spróbuj jeszcze raz.'
 
     return render_template('login.html', error=error)
+
+
 
 #funkcja odpowiedzialna za wylogoanie, odebranie tokenu zalogowania i przeniesienie na stronę logowania
 @app.route('/logout')
