@@ -1,4 +1,4 @@
-
+import os
 import json
 from flask import Flask, render_template, redirect, url_for, request, session, flash, jsonify, json
 from functools import wraps
@@ -57,20 +57,25 @@ def table():
 def home():
     return redirect(url_for('hello'))
 #strona główna użytkownika z opcją zaznaczania czy dane wideo zostało zakończone
+
 @app.route('/hello', methods=['GET', 'POST'])
 @login_required
 def hello():
     error = None
-    with open("static/users.json") as compl:
-        data = json.load(compl)
-        compl.close
-        for i in range(len(data)):
-            if session['name'] == data[i]['login']:
-                v1z= data[i]['vid1']
-                adm= data[i]['admin']
-                    
-    return render_template('main.html', v1z = v1z, adm = adm)
+    v1z = False  # Przypisz wartość domyślną
+    adm = False
+    users_json_path = os.path.join(app.root_path, 'static', 'users.json')
     
+    with open(users_json_path) as compl:
+        data = json.load(compl)
+
+    for i in range(len(data)):
+        if session['name'] == data[i]['login']:
+            v1z = data[i]['vid1']
+            adm = data[i]['admin']
+    
+    return render_template('main.html', v1z=v1z, adm=adm)
+
 #zajmowanie sie logowaniem
 @app.route('/login', methods=['GET', 'POST'])
 def login():

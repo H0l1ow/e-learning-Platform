@@ -1,2 +1,3 @@
 [{"admin": true, "login": "admin", "pass": "admin", "vid1": true, "vid2": false, "vid3": false}, 
- {"admin": false, "login": "gosia", "pass": "abak", "vid1": true, "vid2": false, "vid3": false}]
+ {"admin": false, "login": "Rav", "pass": "1234", "vid1": true, "vid2": false, "vid3": false},
+ {"admin": false, "login": "Dan", "pass": "4444", "vid1": true, "vid2": false, "vid3": false}]
