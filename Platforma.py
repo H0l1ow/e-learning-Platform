@@ -45,10 +45,11 @@ def vid1():
 @app.route('/table', methods=['GET', 'POST'])
 @login_required
 def table():
-    with open("static/users.json") as compl:
+    users_json_path = os.path.join(app.root_path, 'static', 'users.json')
+
+    with open(users_json_path) as compl:
         data = json.load(compl)
         data = json2html.convert(data)
-        compl.close
     
     return render_template('table.html', **locals())
 
