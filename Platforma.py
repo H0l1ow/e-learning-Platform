@@ -1,10 +1,6 @@
-import os
-import json
 from flask import Flask, render_template, redirect, url_for, request, session, flash, jsonify, json
 from functools import wraps
 from flask_mysqldb import MySQL
-#from flask_mysqldb import MySQLdb
-from json2html import *
 app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'    # Host MySQL
