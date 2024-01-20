@@ -13,7 +13,11 @@
 
       <!-- Custom styles for this template -->
       <link href="..\static\css\signin.css" rel="stylesheet">
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+      <script type="text/javascript" src="{{url_for('static', filename='/js/tabulator.js')}}"></script>
+      <link href="/static/css/tabulator_bootstrap5.min.css" rel="stylesheet">
 
     </head>
     <body >
@@ -25,7 +29,6 @@
 
             {% block content %}
             {% endblock %}
-
 
     <footer>
         {%include 'footer.html'%}

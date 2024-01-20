@@ -12,6 +12,7 @@
                 <input class="form-control" type="text" placeholder="Login" name="username" value="{{request.form.username }}" required autofocus>
                 <input class="form-control" type="password" placeholder="Hasło" name="password" value="{{request.form.password }}" required> <br>
                 <input class="btn btn-primary py-2" type="submit" value="Zaloguj">
+                <a class="btn btn-primary py-2" href="{{ url_for('register') }}">Zarejestruj się</a>
             </form>
           </main>
 

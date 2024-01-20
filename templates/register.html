@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <center>
+        <main class="form-signin col-lg-3">
+            <br>
+            <br>
+            <form action="{{ url_for('register') }}" method="POST" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+                <h2 class="form-signin-heading">Zarejestruj się</h2>
+                <input class="form-control" type="text" placeholder="Login" name="username" value="{{ request.form.username }}" required autofocus>
+                <input class="form-control" type="password" placeholder="Hasło" name="password" required>
+                <input class="form-control" type="password" placeholder="Potwierdź hasło" name="confirm_password" required>
+                <br>
+                <input class="btn btn-primary py-2" type="submit" value="Zarejestruj">
+            </form>
+            {% if error %}
+                <p class="error"><strong>Błąd:</strong> {{ error }}</p>
+            {% endif %}
+        </main>
+    </center>
+{% endblock %}

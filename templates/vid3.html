@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <link href="static/bootstrap.min.css" rel="stylesheet" media="screen" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link
+      href="../static/css/ie10-viewport-bug-workaround.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template -->
+    <link href=".\static\css\signin.css" rel="stylesheet" />
+  </head>
+  <body>
+    <center>
+      <div class="container">
+        <h1 class="fw-light">Lekcja 1</h1>
+        <br />
+
+        <video controls id="video1">
+          <source src="static/test.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <br /><br />
+        <a href="/hello" class="btn btn-primary btn-lg px-4 gap-3">Powrót</a>
+
+        {% if error %}
+        <p class="error">
+          <strong>Error:</strong> {{ error }} {% endif %} {% for message in
+          get_flashed_messages() %} {{ message }} {% endfor %}
+        </p>
+      </div>
+    </center>
+    <script type="text/javascript">
+      document
+        .getElementById("video1")
+        .addEventListener("ended", myHandler, false);
+      function myHandler(e) {
+        $.ajax({
+          url: "/vid3",
+          type: "POST",
+          data: { vid1: 1 },
+          success: function (response) {},
+          error: function (error) {
+            console.log(error);
+          },
+        });
+      }
+    </script>
+  </body>
+</html>
